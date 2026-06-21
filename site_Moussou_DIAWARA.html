@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moussou DIAWARA — Environmental Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep:  #0D3B2E;
+    --green-mid:   #1A5C44;
+    --green-light: #2E8B62;
+    --gold:        #C9A84C;
+    --gold-light:  #F0D080;
+    --cream:       #F7F4EE;
+    --white:       #FFFFFF;
+    --text:        #1A1A1A;
+    --muted:       #6B6B6B;
+    --border:      #DDD8CE;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 56px;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--gold); letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 5rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; text-align: center; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--gold); border-radius: 2px;
+    padding: 0.3rem 0.9rem; margin-bottom: 1.8rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    color: var(--white); line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-role {
+    font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.75);
+    margin-bottom: 2rem; letter-spacing: 0.02em;
+  }
+  .hero-bio {
+    font-size: 1rem; color: rgba(255,255,255,0.65);
+    max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    display: inline-block; padding: 0.75rem 1.8rem;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+    text-decoration: none; border-radius: 3px; transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .btn-gold { background: var(--gold); color: var(--green-deep); }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,0.4); color: var(--white); }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.35); font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 40px; background: rgba(255,255,255,0.25);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green-light);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--green-deep); line-height: 1.2; margin-bottom: 3rem;
+  }
+  .divider {
+    width: 48px; height: 3px; background: var(--gold);
+    margin: 1rem 0 2.5rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.97rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .stat-card {
+    background: var(--cream); border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.4rem; border-radius: 2px;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--green-deep); line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; font-weight: 500; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.45rem; top: 0.35rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .timeline-date {
+    font-size: 0.75rem; font-weight: 600; color: var(--green-light);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem;
+  }
+  .timeline-role {
+    font-size: 1.05rem; font-weight: 600; color: var(--green-deep); margin-bottom: 0.15rem;
+  }
+  .timeline-org { font-size: 0.9rem; color: var(--gold); font-weight: 500; margin-bottom: 0.6rem; }
+  .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  .timeline-desc li { margin-bottom: 0.3rem; margin-left: 1rem; }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .skill-group {
+    background: var(--cream); padding: 1.6rem;
+    border-radius: 4px; border-top: 3px solid var(--green-light);
+  }
+  .skill-group-title {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--green-mid); margin-bottom: 1rem;
+  }
+  .skill-tag {
+    display: inline-block; margin: 0.25rem 0.2rem;
+    padding: 0.3rem 0.75rem; border-radius: 2px;
+    background: var(--white); border: 1px solid var(--border);
+    font-size: 0.78rem; color: var(--text); font-weight: 500;
+  }
+
+  /* RESEARCH */
+  #research { background: var(--green-deep); }
+  #research .section-label { color: var(--gold-light); }
+  #research .section-title { color: var(--white); }
+  .research-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-left: 4px solid var(--gold); padding: 1.8rem 2rem;
+    border-radius: 3px; margin-bottom: 1.2rem;
+  }
+  .research-type {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .research-title { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+  .research-meta { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 0.8rem; }
+  .research-abstract { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* AWARD */
+  #awards { background: var(--cream); }
+  .award-card {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    background: var(--white); padding: 1.6rem 2rem;
+    border-radius: 4px; border: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .award-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .award-title { font-size: 1rem; font-weight: 600; color: var(--green-deep); }
+  .award-body { font-size: 0.88rem; color: var(--muted); margin-top: 0.3rem; }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.4rem; }
+  .contact-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--green-deep); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .contact-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.1rem; }
+  .contact-value { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+  .contact-value a { color: var(--green-light); text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+  .profiles { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .profile-link {
+    display: inline-block; padding: 0.5rem 1.1rem;
+    border: 1.5px solid var(--border); border-radius: 3px;
+    font-size: 0.8rem; font-weight: 600; color: var(--green-deep);
+    text-decoration: none; transition: all 0.2s; letter-spacing: 0.04em;
+  }
+  .profile-link:hover { border-color: var(--green-light); color: var(--green-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-deep); color: rgba(255,255,255,0.45);
+    text-align: center; padding: 1.8rem;
+    font-size: 0.8rem; letter-spacing: 0.04em;
+  }
+  footer span { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.72rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 3.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">M. DIAWARA</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Environmental Engineer · Guinea</div>
+    <h1>Moussou<br><em>DIAWARA</em></h1>
+    <p class="hero-role">HSE Specialist &nbsp;·&nbsp; Water & Waste Management &nbsp;·&nbsp; Environmental Research</p>
+    <p class="hero-bio">
+      Committed to protecting ecosystems and communities across West Africa through rigorous environmental engineering, field research, and sustainable development practice.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-gold">Get in touch</a>
+      <a href="#experience" class="btn btn-outline">View my work</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who I am</div>
+    <h2 class="section-title">Environmental Engineer<br>based in Guinea</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am an Environmental Engineer with hands-on experience in the mining sector, water quality laboratory analysis, and academic environmental research. My work spans waste monitoring, site rehabilitation, environmental impact assessment (ESIA), and HSE compliance.</p>
+        <p>I hold a Bachelor's degree in Environmental Sciences from the Université de N'Zérékoré and am currently completing my Master's degree. My academic research focuses on leachate composition from illegal dump sites — a critical public health and environmental issue in urban Guinea.</p>
+        <p>I am passionate about building the next generation of environmental governance in West Africa, one field study, one audit, and one community at a time.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years field experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Rio-Tinto Enterprise Prize</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Regions of Guinea covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Professional certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jul – Aug 2024</div>
+        <div class="timeline-role">Environmental Department Intern</div>
+        <div class="timeline-org">Anglo-Gold Ashanti de Guinée (SAG) — Siguiri</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Monitored solid & liquid waste streams on an active gold mining site in compliance with SAG and national environmental standards</li>
+            <li>Participated in environmental rehabilitation of mining-impacted land</li>
+            <li>Conducted systematic air, water and soil quality monitoring using field instruments</li>
+            <li>Supported preparation of internal environmental audit documentation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Aug – Sep 2022</div>
+        <div class="timeline-role">Laboratory Intern</div>
+        <div class="timeline-org">Laboratoire Régional des Eaux de Kankan — Kankan</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Performed physico-chemical analyses (pH, turbidity, conductivity, dissolved oxygen, nitrates)</li>
+            <li>Executed toxicological and bacteriological tests; compared results against WHO standards</li>
+            <li>Drafted analytical reports and maintained laboratory registers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024 — Academic</div>
+        <div class="timeline-role">Lead Researcher — Leachate Study</div>
+        <div class="timeline-org">Université de N'Zérékoré</div>
+        <div class="timeline-desc">
+          Designed and conducted a full study on leachate composition from illegal dump sites in N'Zérékoré. Performed physico-chemical and biological characterization and produced a research report with environmental risk assessment and policy recommendations.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024 — Academic</div>
+        <div class="timeline-role">Field Data Analyst — ESIA</div>
+        <div class="timeline-org">Université de N'Zérékoré</div>
+        <div class="timeline-desc">
+          Collected and statistically processed primary field data for a full Environmental & Social Impact Assessment (ESIA). Co-authored synthesis report with findings and recommendations.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2022</div>
+        <div class="timeline-role">Project Leader — Young Enterprise Competition</div>
+        <div class="timeline-org">Rio-Tinto / Jeune Entreprise — Conakry</div>
+        <div class="timeline-desc">
+          Designed a full poultry farming business plan and presented it before a professional jury. <strong>Awarded First Prize</strong> at the Rio-Tinto Young Enterprise Competition.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Skills & Competencies</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Environmental Management</div>
+        <span class="skill-tag">Environmental Impact Assessment (EIA/ESIA)</span>
+        <span class="skill-tag">Waste Management & Monitoring</span>
+        <span class="skill-tag">Site Rehabilitation</span>
+        <span class="skill-tag">Environmental Auditing</span>
+        <span class="skill-tag">Mining Environment</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Laboratory & Field</div>
+        <span class="skill-tag">Water Quality Analysis</span>
+        <span class="skill-tag">Physico-chemical Testing</span>
+        <span class="skill-tag">Bacteriological Analysis</span>
+        <span class="skill-tag">Soil Survey (Pedology)</span>
+        <span class="skill-tag">Field Data Collection</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">HSE & Compliance</div>
+        <span class="skill-tag">HSE / SSE</span>
+        <span class="skill-tag">Occupational Health & Safety</span>
+        <span class="skill-tag">Regulatory Compliance</span>
+        <span class="skill-tag">Mining Waste Management</span>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages & Tools</div>
+        <span class="skill-tag">French — Mother tongue</span>
+        <span class="skill-tag">English — Intermediate</span>
+        <span class="skill-tag">Microsoft Office</span>
+        <span class="skill-tag">Statistical Data Processing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">Academic Work</div>
+    <h2 class="section-title">Research & Publications</h2>
+    <div class="divider" style="background:var(--gold);"></div>
+
+    <div class="research-card">
+      <div class="research-type">Research Report · 2024</div>
+      <div class="research-title">Étude de la composition des lixiviats issus de décharges sauvages de la ville de N'Zérékoré</div>
+      <div class="research-meta">Université de N'Zérékoré, Guinea &nbsp;·&nbsp; Unpublished academic research report</div>
+      <div class="research-abstract">
+        Investigation of leachate composition from illegal dump sites in the city of N'Zérékoré, Guinea. The study characterizes samples through physico-chemical and biological analyses and examines key influencing factors including waste type, climatic conditions, hydrology, and site geology. Includes environmental risk assessment and policy recommendations for urban waste governance.
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-type">ESIA Field Study · 2024</div>
+      <div class="research-title">Data Collection & Processing for Environmental and Social Impact Assessment</div>
+      <div class="research-meta">Université de N'Zérékoré, Guinea</div>
+      <div class="research-abstract">
+        Primary field data collection and statistical processing for a full ESIA study. Contributed to the synthesis report with findings, impact matrices, and actionable recommendations.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Awards & Distinctions</h2>
+    <div class="divider"></div>
+
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div>
+        <div class="award-title">First Prize — Rio-Tinto Young Enterprise Competition (2022)</div>
+        <div class="award-body">Awarded best project among all competing teams for the design and presentation of a poultry farming (laying hens) enterprise business plan. Organized by Rio-Tinto & Jeune Entreprise, Conakry, Guinea.</div>
+      </div>
+    </div>
+
+    <div class="award-card">
+      <div class="award-icon">🎖️</div>
+      <div>
+        <div class="award-title">Selected Participant — Entrepreneurship Promotion Salon (Dec. 2022)</div>
+        <div class="award-body">KLB-BTP-Entreprise, N'Zérékoré, Guinea.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Let's connect</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:moussoudiawara123@gmail.com">moussoudiawara123@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+224 624-01-69-43</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Siguiri, Republic of Guinea</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-label" style="margin-bottom:0.8rem;">Online Profiles</div>
+        <div class="profiles">
+          <a href="https://scholar.google.com" class="profile-link" target="_blank">Google Scholar</a>
+          <a href="https://www.researchgate.net" class="profile-link" target="_blank">ResearchGate</a>
+          <a href="https://www.linkedin.com" class="profile-link" target="_blank">LinkedIn</a>
+        </div>
+        <p style="font-size:0.83rem;color:var(--muted);margin-top:1.5rem;line-height:1.6;">
+          Open to environmental consulting assignments, research collaborations, and HSE roles across Guinea and West Africa. Available for field missions in remote areas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Moussou DIAWARA</span> · Environmental Engineer · Guinea</p>
+</footer>
+
+</body>
+</html>
